@@ -35,7 +35,7 @@ class Juzi(object):
         从文件 result_4 中随机获取一句话
         """
         num = random.randrange(0, 2546)
-        file = open('E:\\pystudy\\spider\\study-book\\yiyan\\juzi\\result_4.txt', 'rb')
+        file = open('/opt/smsweather/juzi/result_4.txt', 'rb')
         sentence = file.readlines()[num].decode('utf-8')
         sen = dict(ast.literal_eval(sentence))
         file.close()

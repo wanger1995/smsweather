@@ -12,19 +12,17 @@ import sys
 
 sys.path.append('/opt/smsweather/juzi')
 
-# 东莞
-#101281601
-# 达州
-#101270601
+# 东莞 101281601
+# 达州 101270601
 
 
-def message(city):
+def message():
     """
     爬取天气，
     :param
     :return:
     """
-    url = 'https://tianqi.so.com/weather/' + city
+    url = 'https://tianqi.so.com/weather/101280601'
     html = requests.get(url)
     if html.status_code == 200:
         htmltext = html.text
@@ -43,7 +41,7 @@ def message(city):
         c = juzi.Juzi()
         jitang = c.getonesentence()
         # jitang = '也许只要还有人在不断想念，逝去的人就并没有真的离开吧。'
-        sedtext = 'My friend，早上好啊' + '\n' + \
+        sedtext = 'Dear，早上好啊' + '\n' + \
                   jitang + '\n' + \
                   '天气:' + weather + '\n' + \
                   '温度:' + body + '\n' + \
@@ -80,19 +78,12 @@ def main():
     """
     hjf = '+8617745446935'
     xyr = '+8618781673651'
-    lyl = {
-            'phone': '+8619982064824',
-            'city': '101270601'
-            }
-    hzq = {
-            'phone': '+8618603036124',
-            'city': '101281601'
-            }
-    user_list = [hzq, lyl]
+    lyl = '+8619982064824'
+    hzq = '+8618603036124'
+    user_list = [xyr, hjf]
     for i in user_list:
-        text = message(i['city'])
-        #print(i['phone'])
-        sedsms(text, i['phone'])
+        text = message()
+        sedsms(text, i)
 
 
 if __name__ == '__main__':  # 程序入口
